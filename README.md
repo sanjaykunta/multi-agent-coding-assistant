@@ -4,6 +4,12 @@ Production-style portfolio project: a coding assistant that turns a software req
 
 It is intentionally runnable without cloud credentials through a local deterministic LLM provider, while keeping a real Vertex AI Gemini provider ready for production use.
 
+## Demo
+
+![CLI demo showing the multi-agent coding assistant workflow](docs/assets/cli-demo.svg)
+
+The assistant takes a natural-language requirement, retrieves repository context, runs specialized agents, persists generated artifacts through MCP, and returns implementation code, tests, and a review.
+
 ## What This Shows Recruiters
 
 - Multi-agent orchestration with LangGraph.

@@ -1,0 +1,42 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Multi-Agent Coding Assistant CLI demo</title>
+  <desc id="desc">Terminal-style screenshot showing a multi-agent coding assistant generating code, tests, and a review.</desc>
+  <rect width="1200" height="760" rx="18" fill="#0B1020"/>
+  <rect x="32" y="32" width="1136" height="696" rx="14" fill="#111827" stroke="#334155"/>
+  <circle cx="64" cy="62" r="8" fill="#EF4444"/>
+  <circle cx="92" cy="62" r="8" fill="#F59E0B"/>
+  <circle cx="120" cy="62" r="8" fill="#22C55E"/>
+  <text x="150" y="68" fill="#CBD5E1" font-family="Menlo, Consolas, monospace" font-size="17">multi-agent-coding-assistant</text>
+
+  <text x="56" y="116" fill="#94A3B8" font-family="Menlo, Consolas, monospace" font-size="17">$ LLM_PROVIDER=local coding-assistant run "Create a task management endpoint with validation and tests."</text>
+
+  <text x="56" y="158" fill="#38BDF8" font-family="Menlo, Consolas, monospace" font-size="17">Retrieving local code context...</text>
+  <text x="56" y="188" fill="#38BDF8" font-family="Menlo, Consolas, monospace" font-size="17">Architect Agent is designing the solution...</text>
+  <text x="56" y="218" fill="#38BDF8" font-family="Menlo, Consolas, monospace" font-size="17">Coding Agent is generating implementation code...</text>
+  <text x="56" y="248" fill="#38BDF8" font-family="Menlo, Consolas, monospace" font-size="17">Testing Agent is generating tests and running quality gate...</text>
+  <text x="56" y="278" fill="#38BDF8" font-family="Menlo, Consolas, monospace" font-size="17">Review Agent is reviewing production readiness...</text>
+  <text x="56" y="308" fill="#38BDF8" font-family="Menlo, Consolas, monospace" font-size="17">Saving generated artifacts through MCP...</text>
+
+  <rect x="56" y="342" width="520" height="130" rx="10" fill="#0F172A" stroke="#334155"/>
+  <text x="80" y="376" fill="#F8FAFC" font-family="Menlo, Consolas, monospace" font-size="16">Architect Agent</text>
+  <text x="80" y="410" fill="#CBD5E1" font-family="Menlo, Consolas, monospace" font-size="15">- FastAPI service with clear app boundary</text>
+  <text x="80" y="438" fill="#CBD5E1" font-family="Menlo, Consolas, monospace" font-size="15">- Pydantic validation for request models</text>
+
+  <rect x="624" y="342" width="520" height="130" rx="10" fill="#0F172A" stroke="#334155"/>
+  <text x="648" y="376" fill="#F8FAFC" font-family="Menlo, Consolas, monospace" font-size="16">Coding Agent</text>
+  <text x="648" y="410" fill="#CBD5E1" font-family="Menlo, Consolas, monospace" font-size="15">generated/feature.py</text>
+  <text x="648" y="438" fill="#CBD5E1" font-family="Menlo, Consolas, monospace" font-size="15">POST /tasks + GET /tasks</text>
+
+  <rect x="56" y="506" width="520" height="130" rx="10" fill="#0F172A" stroke="#334155"/>
+  <text x="80" y="540" fill="#F8FAFC" font-family="Menlo, Consolas, monospace" font-size="16">Testing Agent</text>
+  <text x="80" y="574" fill="#CBD5E1" font-family="Menlo, Consolas, monospace" font-size="15">generated/test_feature.py</text>
+  <text x="80" y="602" fill="#CBD5E1" font-family="Menlo, Consolas, monospace" font-size="15">success + validation + list tests</text>
+
+  <rect x="624" y="506" width="520" height="130" rx="10" fill="#0F172A" stroke="#334155"/>
+  <text x="648" y="540" fill="#F8FAFC" font-family="Menlo, Consolas, monospace" font-size="16">Review Agent</text>
+  <text x="648" y="574" fill="#CBD5E1" font-family="Menlo, Consolas, monospace" font-size="15">production readiness review</text>
+  <text x="648" y="602" fill="#CBD5E1" font-family="Menlo, Consolas, monospace" font-size="15">database, auth, tracing recommendations</text>
+
+  <rect x="56" y="666" width="1088" height="34" rx="8" fill="#064E3B"/>
+  <text x="80" y="689" fill="#D1FAE5" font-family="Menlo, Consolas, monospace" font-size="16">Status: completed  •  artifacts saved via MCP  •  tests generated</text>
+</svg>
