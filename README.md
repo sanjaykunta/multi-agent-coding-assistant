@@ -22,17 +22,37 @@ The assistant takes a natural-language requirement, retrieves repository context
 ## Architecture
 
 ```mermaid
-flowchart LR
-    User[User Requirement] --> RAG[Embedding RAG Retriever]
-    RAG --> Architect[Architect Agent]
-    Architect --> Coder[Coding Agent]
-    Coder --> Tester[Testing Agent]
-    Tester -->|quality gate fails| Coder
-    Tester -->|quality gate passes| Reviewer[Review Agent]
-    Reviewer --> MCPClient[MCP Client]
-    MCPClient --> MCPServer[MCP Repository Server]
-    MCPServer --> Files[Generated Files]
-    Files --> API[FastAPI / CLI Response]
+flowchart TB
+    CLI["CLI: coding-assistant<br/>(Typer)"]
+    API["FastAPI: /assist<br/>(optional API entrypoint)"]
+    Graph["LangGraph StateGraph<br/>shared assistant workflow"]
+    RAG["Embedding RAG Retriever<br/>workspace context"]
+    Architect["Architect Agent<br/>design"]
+    Coder["Coding Agent<br/>implementation"]
+    Tester["Testing Agent<br/>test plan + pytest"]
+    Gate{"Quality gate<br/>passed?"}
+    Reviewer["Review Agent<br/>production readiness"]
+    Budget{"Retry budget<br/>available?"}
+    MCPClient["MCP Client"]
+    MCPServer["MCP Repository Server"]
+    Files["Generated files<br/>sample_workspace/generated"]
+    End["Completed response"]
+
+    CLI -->|"requirement (str)"| Graph
+    API -->|"AssistRequest"| Graph
+    Graph --> RAG
+    RAG -->|"retrieved context"| Architect
+    Architect -->|"design"| Coder
+    Coder -->|"code artifact"| Tester
+    Tester -->|"test artifact"| Gate
+    Gate -->|"no"| Budget
+    Budget -->|"yes"| Coder
+    Budget -->|"no"| Reviewer
+    Gate -->|"yes"| Reviewer
+    Reviewer -->|"approved artifacts"| MCPClient
+    MCPClient --> MCPServer
+    MCPServer --> Files
+    Files --> End
 ```
 
 ## Tech Stack
