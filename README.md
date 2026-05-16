@@ -6,7 +6,7 @@ It is intentionally runnable without cloud credentials through a local determini
 
 ## Demo
 
-![CLI demo showing the multi-agent coding assistant workflow](docs/assets/cli-demo.svg)
+![CLI demo showing the multi-agent coding assistant workflow](docs/assets/cli-demo.gif)
 
 The assistant takes a natural-language requirement, retrieves repository context, runs specialized agents, persists generated artifacts through MCP, and returns implementation code, tests, and a review.
 
