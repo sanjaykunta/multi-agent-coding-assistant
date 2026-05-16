@@ -1,8 +1,8 @@
 # Multi-Agent Coding Assistant
 
-Production-style portfolio project: a coding assistant that turns a software requirement into a design, implementation artifact, test plan, and code review using a LangGraph multi-agent workflow.
+This is a coding assistant that turns a software requirement into a design, implementation artifact, test plan, and code review using a LangGraph multi-agent workflow.
 
-It is intentionally runnable without cloud credentials through a local deterministic LLM provider, while keeping a real Vertex AI Gemini provider ready for production use.
+The project can run locally with a deterministic model provider for quick development and tests. It can also run against Vertex AI Gemini by changing the `.env` configuration.
 
 ## Demo
 
@@ -10,14 +10,14 @@ It is intentionally runnable without cloud credentials through a local determini
 
 The assistant takes a natural-language requirement, retrieves repository context, runs specialized agents, persists generated artifacts through MCP, and returns implementation code, tests, and a review.
 
-## What This Shows Recruiters
+## Features
 
 - Multi-agent orchestration with LangGraph.
-- Clean model-provider abstraction for Vertex AI Gemini.
+- Model-provider abstraction for local deterministic runs and Vertex AI Gemini.
 - Embedding-based local RAG retrieval over source files and docs.
 - MCP client/server integration for safe repository file access.
-- FastAPI backend, CLI entrypoint, tests, linting, and Docker packaging.
-- A practical path to Cloud Run, GitHub PR automation, and evaluation metrics.
+- FastAPI backend and CLI entrypoint.
+- Tests, linting, CI, and Docker packaging.
 
 ## Architecture
 
@@ -47,9 +47,9 @@ flowchart LR
 - Ruff
 - Docker
 
-## Setup
+## Local Setup
 
-You need Python 3.11 or newer. On macOS with Homebrew:
+Install Python 3.11 or newer. On macOS with Homebrew:
 
 ```bash
 brew install python@3.11
@@ -66,20 +66,20 @@ pip install -e ".[dev]"
 cp .env.example .env
 ```
 
-Run tests:
+Run tests and linting:
 
 ```bash
 pytest
 ruff check .
 ```
 
-Run the API:
+Start the API:
 
 ```bash
 uvicorn coding_assistant.api.main:app --reload
 ```
 
-Try it:
+Call the API:
 
 ```bash
 curl -X POST http://127.0.0.1:8000/assist \
@@ -87,7 +87,7 @@ curl -X POST http://127.0.0.1:8000/assist \
   -d '{"requirement":"Create a task management endpoint with validation and tests."}'
 ```
 
-Run from the terminal:
+Run the CLI:
 
 ```bash
 coding-assistant run "Create a task management endpoint with validation and tests."
@@ -102,9 +102,9 @@ sample_workspace/generated/test_feature.py
 
 `sample_workspace` comes from `WORKSPACE_ROOT` in `.env`, so you can point it at a different local folder when you want the assistant to write into another project.
 
-## Using Vertex AI Gemini
+## Vertex AI Gemini
 
-The local deterministic model is for development and CI. To use Vertex AI, edit `.env`:
+The local deterministic provider is useful for quick runs and CI. To use Vertex AI Gemini, edit `.env`:
 
 ```bash
 LLM_PROVIDER=vertex
@@ -121,7 +121,7 @@ Authenticate with Google Cloud:
 gcloud auth application-default login
 ```
 
-This project uses the current Google Gen AI SDK style for Vertex AI:
+The Vertex provider uses the Google Gen AI SDK:
 
 ```python
 from google import genai
@@ -150,9 +150,9 @@ The LangGraph workflow persists generated artifacts through the MCP client/serve
 Graph -> MCP client -> MCP repository server -> safe repository tool -> filesystem
 ```
 
-## Design Notes
+## More Details
 
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the workflow, component boundaries, and production roadmap.
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the workflow, component boundaries, and roadmap.
 
 Security notes are documented in [SECURITY.md](SECURITY.md).
 

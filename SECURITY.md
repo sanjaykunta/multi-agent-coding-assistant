@@ -1,6 +1,6 @@
 # Security Notes
 
-This project is designed as a portfolio-grade local system, not a hosted multi-tenant service.
+This project is designed as a local development system, not a hosted multi-tenant service.
 
 ## Secret Handling
 
@@ -16,4 +16,3 @@ Repository file access is constrained to `WORKSPACE_ROOT`. The repository tool r
 ## Model Output Safety
 
 Generated code should be reviewed before use in production. The current workflow includes a Review Agent and tests, but a real deployment should also run static analysis, dependency scanning, and generated test execution inside an isolated environment.
-
