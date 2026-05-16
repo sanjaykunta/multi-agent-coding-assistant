@@ -2,7 +2,7 @@
 
 This is a coding assistant that turns a software requirement into a design, implementation artifact, test plan, and code review using a LangGraph multi-agent workflow.
 
-The project can run locally with a deterministic model provider for quick development and tests. It can also run against Vertex AI Gemini by changing the `.env` configuration.
+The project can run locally with a deterministic model provider for quick development and tests. It can also call Gemini models through Google Cloud's current Gemini Enterprise / Agent Platform direction by using the Google Gen AI SDK with Vertex AI-backed runtime configuration.
 
 ## Demo
 
@@ -13,7 +13,7 @@ The assistant takes a natural-language requirement, retrieves repository context
 ## Features
 
 - Multi-agent orchestration with LangGraph.
-- Model-provider abstraction for local deterministic runs and Vertex AI Gemini.
+- Model-provider abstraction for local deterministic runs and Google Cloud Gemini.
 - Embedding-based local RAG retrieval over source files and docs.
 - MCP client/server integration for safe repository file access.
 - FastAPI backend and CLI entrypoint.
@@ -41,7 +41,7 @@ flowchart LR
 - LangGraph
 - FastAPI
 - Model Context Protocol Python SDK
-- Google Gen AI SDK for Vertex AI Gemini
+- Google Gen AI SDK for Gemini on Google Cloud
 - Pydantic
 - pytest
 - Ruff
@@ -102,9 +102,9 @@ sample_workspace/generated/test_feature.py
 
 `sample_workspace` comes from `WORKSPACE_ROOT` in `.env`, so you can point it at a different local folder when you want the assistant to write into another project.
 
-## Vertex AI Gemini
+## Google Cloud Gemini
 
-The local deterministic provider is useful for quick runs and CI. To use Vertex AI Gemini, edit `.env`:
+The local deterministic provider is useful for quick runs and CI. To call Gemini through Google Cloud, edit `.env`:
 
 ```bash
 LLM_PROVIDER=vertex
@@ -121,7 +121,7 @@ Authenticate with Google Cloud:
 gcloud auth application-default login
 ```
 
-The Vertex provider uses the Google Gen AI SDK:
+The Google Cloud Gemini provider uses the Google Gen AI SDK with Vertex AI runtime configuration:
 
 ```python
 from google import genai
@@ -160,7 +160,7 @@ Security notes are documented in [SECURITY.md](SECURITY.md).
 
 Near-term:
 
-- Replace the local embedding provider with Vertex embeddings and store vectors in Vertex AI Vector Search or pgvector.
+- Replace the local embedding provider with Gemini / Vertex AI embeddings and store vectors in Vertex AI Vector Search or pgvector.
 - Add real GitHub MCP integration for reading repositories and opening pull requests.
 
 Evaluation:
@@ -176,5 +176,6 @@ Deployment:
 ## References
 
 - LangGraph uses `StateGraph` to define typed graph state, nodes, edges, and compiled invocations.
-- Google Cloud recommends the `google-genai` SDK for Gemini on Vertex AI.
+- Google Cloud positions Gemini Enterprise as its agentic platform for discovering, creating, sharing, and running AI agents, while custom agents can still use Google Cloud developer/runtime services underneath.
+- This project uses the `google-genai` SDK to call Gemini with Vertex AI-backed configuration.
 - MCP servers expose tools through a standardized protocol, which makes agent integrations easier to swap and audit.
